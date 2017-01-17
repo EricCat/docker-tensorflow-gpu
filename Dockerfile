@@ -2,7 +2,6 @@ FROM nvidia/cuda:8.0-cudnn5-devel
 
 MAINTAINER Wei.Liu <cats8.lw@gmail.com>
 
-RUN add-apt-repository ppa:graphics-drivers/ppa
 # Pick up some TF dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
@@ -19,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         unzip \
         zip \
         zlib1g-dev \
-        nvidia-352-dev \
+
         git \
         vim \
         && \
@@ -28,11 +27,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN ln -s /usr/bin/python3 /usr/bin/python
 #RUN cp /usr/local/cuda-8.0/targets/x86_64-linux/lib/libcuda.so.1 /usr/local/cuda/lib64/libcuda.so.1
-
+# Fixed Nvida drive issue for cuda:8.0
+RUN add-apt-repository ppa:graphics-drivers/ppa
+RUN apt-get update && apt-get install -y --no-install-recommends nvidia-352-dev
+# Install pip
 RUN curl -fSsL -O https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
     rm get-pip.py
-
+# Install basic requirments
 RUN pip --no-cache-dir install \
         requests \
         Pillow \
