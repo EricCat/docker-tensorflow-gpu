@@ -2,6 +2,7 @@ FROM nvidia/cuda:8.0-cudnn5-devel
 
 MAINTAINER Wei.Liu <cats8.lw@gmail.com>
 
+RUN add-apt-repository ppa:graphics-drivers/ppa
 # Pick up some TF dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
@@ -18,6 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         unzip \
         zip \
         zlib1g-dev \
+        nvidia-352-dev \
         git \
         vim \
         && \
@@ -25,6 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 RUN ln -s /usr/bin/python3 /usr/bin/python
+RUN ln -s /usr/lib/x86_64-linux-gnu/libcuda.so.1 /usr/local/cuda/lib64/libcuda.so.1
 
 RUN curl -fSsL -O https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
