@@ -45,7 +45,11 @@ RUN pip --no-cache-dir install \
         matplotlib \
         scikit-learn \
         PyYAML \
-        psutil
+        psutil \
+        pandas \
+        gensim \
+        openpyxl \
+        boto3
 
 # Set up Bazel.
 
