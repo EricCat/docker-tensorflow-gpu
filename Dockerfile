@@ -49,7 +49,8 @@ RUN pip --no-cache-dir install \
         pandas \
         gensim \
         openpyxl \
-        boto3
+        boto3 \
+        beautifulsoup4
 
 # Set up Bazel.
 
