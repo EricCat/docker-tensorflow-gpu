@@ -1,0 +1,23 @@
+Tensorflow:
+  download_dir: "/var/www/app/tensorflow"
+  models_dir: "/var/www/app/models/"
+  images_dir: "/var/www/app/output"
+  logger_dir: "/var/www/app/log"
+  cache_dir: "/var/www/app/cache"
+
+VGG_16:
+  data_url: "http://download.tensorflow.org/models/vgg_16_2016_08_28.tar.gz"
+  checkpoint_name: "vgg_16.ckpt"
+  scope_name: "vgg_16"
+  num_classes: 1000
+
+Inception_v3:
+  data_url: "http://download.tensorflow.org/models/image/imagenet/inception-2015-12-05.tgz"
+  path_graph_def: "classify_image_graph_def.pb"
+
+Inception_v4:
+  data_url: "http://download.tensorflow.org/models/inception_v4_2016_09_09.tar.gz"
+  checkpoint_name: "inception_v4.ckpt"
+  scope_name: "InceptionV4"
+  num_classes: 1001
+

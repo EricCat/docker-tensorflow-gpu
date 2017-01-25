@@ -106,3 +106,20 @@ RUN tensorflow/tools/ci_build/builds/configured GPU \
     rm -rf /tmp/pip && \
     rm -rf /root/.cache
 # Clean up pip wheel and Bazel cache when done.
+
+# create required dir
+RUN mkdir -p /var/www/app
+RUN mkdir -p /var/www/app/models
+RUN mkdir -p /var/www/app/output
+RUN mkdir -p /var/www/app/cache
+RUN mkdir -p /var/www/app/log
+
+COPY . /var/www/app
+# create tensorflow modals dir
+RUN mkdir -p /var/www/app/tensorflow
+WORKDIR /var/www/app/tensorflow
+RUN git clone https://github.com/tensorflow/models.git
+
+WORKDIR /var/www/app
+
+RUN python build.py
